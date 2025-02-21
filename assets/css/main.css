@@ -19,10 +19,10 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --background-color: #DBCDC6; /* Background color for the entire website, including individual sections */
   --default-color: #2b180d; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #1b2f45; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #56b8e6; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --heading-color: #125158; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #406363; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -45,11 +45,11 @@
 }
 
 .dark-background {
-  --background-color: #17283b;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #254160;
-  --contrast-color: #ffffff;
+  --background-color: #125158;
+  --default-color: #DBCDC6;
+  --heading-color: #DBCDC6;
+  --surface-color: #406363;
+  --contrast-color: #DBCDC6;
 }
 
 /* Smooth scroll */
@@ -157,7 +157,7 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 32px;
+  max-height: 95px;
   margin-right: 8px;
 }
 
