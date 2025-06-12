@@ -35,6 +35,23 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+  /* Limita la altura del contenedor del calendario */
+  #calendar {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .fc .fc-timegrid-body {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  /* Opcional: Mejora el aspecto del scroll si se excede la altura */
+  .fc-scroller-harness {
+    overflow: visible !important;
+  }
+</style>
 </head>
 
     <body class="about-page">
@@ -88,9 +105,12 @@
             </section>
             <section id="services" class="services section">
                 <div class="container py-5">
-                <h3 class="mb-4">Selecciona una fecha y hora para tu cita</h3>
-                <div id="calendar"></div>
-            </div>
+                    <div class="card">
+                        <h3 class="mb-4">Selecciona una fecha y hora para tu cita</h3>
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+                
             </section>
             
   <!-- Modal con Formulario -->
@@ -146,6 +166,68 @@
     </div>
   </div>
         </main>
+        <footer id="footer" class="footer light-background">
+
+            <div class="footer-top">
+              <div class="container">
+                <div class="row gy-4">
+                  <div class="col-lg-5 col-md-12 footer-about">
+                    
+                    <a href="index.html" class="logo d-flex align-items-center">
+                      <span class="sitename">Alva Seguros</span>
+                    </a>
+                    <p>Protección y tranquilidad a tu alcance. En Alva Seguros, nos comprometemos a ofrecerte las mejores opciones en seguros, adaptadas a tus necesidades. Contáctanos para recibir asesoría personalizada y asegurarte de que lo que más valoras esté siempre protegido.</p>
+                    <div class="social-links d-flex mt-4">
+                      <a href=""><i class="bi bi-twitter-x"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+        
+                  <div class="col-lg-2 col-6 footer-links">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                      <li><a href="#">Preguntas frecuentes</a></li>
+                      <li><a href="#">Términos y condiciones</a></li>
+                      <li><a href="#">Pólitica de privacidad</a></li>
+                    </ul>
+                  </div>
+        
+                  <div class="col-lg-2 col-6 footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                      <li><a href="#">Seguro de Gastos Médicos Mayores</a></li>
+                      <li><a href="#">Seguro de Auto y Moto</a></li>
+                      <li><a href="#">Seguro de vida</a></li>
+                      <li><a href="#">Otros seguros</a></li>
+                    </ul>
+                  </div>
+        
+                  <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contáctanos</h4>
+                    <p>Avenida Siempre Viva</p>
+                    <p>Nezahualcoyotl, NZ 226</p>
+                    <p>México</p>555614053241</span></p>
+                    <p><strong>Email:</strong> <span>info@example.com</span></p>
+                  </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="container copyright text-center">
+              <p>© <span>Copyright</span> <strong class="px-1 sitename">Alva Seguros</strong> <span>Todos los derechos reservados</span></p>
+              <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+                Desarrollado por: <a href="#">Fls</a>
+              </div>
+            </div>
+        
+          </footer>
 
                 <!-- Scroll Top -->
         <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -171,6 +253,7 @@
       const calendarEl = document.getElementById('calendar');
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
+        contentHeight: "auto",
         locale: 'es',
         slotMinTime: "09:00:00",
         slotMaxTime: "18:00:00",
