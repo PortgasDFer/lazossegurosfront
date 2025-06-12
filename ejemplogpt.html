@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMM - Lazos Seguros</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .hero {
+      background: url('https://source.unsplash.com/1600x500/?insurance,family') center/cover no-repeat;
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="display-4 fw-bold">Gastos Médicos Mayores</h1>
+    <p class="lead">Protege lo más valioso: tu salud y la de tu familia</p>
+    <a href="#contacto" class="btn btn-primary btn-lg mt-3">Agenda tu cita</a>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="container py-5">
+    <div class="row text-center mb-4">
+      <h2 class="fw-semibold">¿Por qué contratar GMM?</h2>
+      <p class="text-muted">Algunos de los beneficios clave para ti:</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="border rounded p-4 text-center h-100">
+          <i class="bi bi-heart-pulse-fill fs-1 text-danger"></i>
+          <h5 class="fw-bold mt-3">Cobertura amplia</h5>
+          <p>Desde consultas hasta cirugías mayores, protegemos tu salud.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="border rounded p-4 text-center h-100">
+          <i class="bi bi-hospital fs-1 text-success"></i>
+          <h5 class="fw-bold mt-3">Red de hospitales</h5>
+          <p>Accede a hospitales privados de alto nivel en todo el país.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="border rounded p-4 text-center h-100">
+          <i class="bi bi-person-check-fill fs-1 text-primary"></i>
+          <h5 class="fw-bold mt-3">Atención personalizada</h5>
+          <p>Te asesoramos para elegir el plan adecuado para ti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <h3 class="text-center fw-semibold mb-4">Testimonios</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <blockquote class="blockquote">
+            <p>“Gracias a su asesoría, tuve el respaldo que necesitaba cuando más lo requerí.”</p>
+            <footer class="blockquote-footer">Ana López</footer>
+          </blockquote>
+        </div>
+        <div class="col-md-6">
+          <blockquote class="blockquote">
+            <p>“Excelente atención y seguimiento. Me siento protegido con mi seguro.”</p>
+            <footer class="blockquote-footer">Carlos Ramírez</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h3 class="text-center mb-4">Agenda tu cita</h3>
+        <form>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha de la cita</label>
+            <input type="date" class="form-control" id="fecha" required>
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <small>Lazos Seguros © 2025 - Todos los derechos reservados</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
