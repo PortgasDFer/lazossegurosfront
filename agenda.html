@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Inicio - Alva Seguros</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Nova
+  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+    <body class="about-page">
+         <header id="header" class="header d-flex align-items-center fixed-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="assets/img/logo.png" alt=""> -->
+                    <h1 class="sitename">Alva Seguros</h1>
+                </a>
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="index.html" class="active">Inicio<br></a></li>
+                        <li><a href="about.html">Acerca de Alva Seguros</a></li>
+                        <li class="dropdown"><a href="#"><span>Servicios</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#">Seguro de Gastos Médicos Mayores</a></li>
+                                <li><a href="#">Seguro de Auto y Moto</a></li>
+                                <li><a href="#">Seguro de vida</a></li>
+                                <li><a href="#">Otros seguros</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="portfolio.html">Blog/Noticias</a></li>
+                        <li><a href="team.html">Agenda tu cita</a></li>
+                        <li><a href="blog.html">Contáctanos</a></li>
+                        <li><a href="blog.html">Testimonios</a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+                        <!-- Page Title -->
+            <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/services-page-title-bg.jpg);">
+                <div class="container">
+                <h1>Agenda tu cita</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current">Agenda tu cita</li>
+                    </ol>
+                </nav>
+                </div>
+            </div><!-- End Page Title -->
+            <section id="services" class="services section">
+              <div class="container section-title justify-content-center" data-aos="fade-up">
+                <h2>Cobertura amplia en hospitales de primer nivel.</h2>
+                <p>Atención médica especializada y acceso a tecnología de punta.</p>
+              </div><!-- End Section Title -->
+            </section>
+            <section id="services" class="services section">
+                <div class="container py-5">
+                <h3 class="mb-4">Selecciona una fecha y hora para tu cita</h3>
+                <div id="calendar"></div>
+            </div>
+            </section>
+            
+  <!-- Modal con Formulario -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Agendar Cita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="appointmentForm">
+            <input type="hidden" id="selectedDate">
+            <input type="hidden" id="selectedTime">
+            <div class="mb-3">
+              <label class="form-label">Nombre completo</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Medio</label>
+              <select class="form-select" id="method" required>
+                <option value="">Seleccione una opción</option>
+                <option value="Presencial">Presencial</option>
+                <option value="Videollamada">Videollamada</option>
+              </select>
+            </div>
+            <div class="alert alert-info" id="selectedSlotInfo"></div>
+            <button type="submit" class="btn btn-success">Confirmar Cita</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Cita Confirmada</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="confirmationMessage"></div>
+      </div>
+    </div>
+  </div>
+        </main>
+
+                <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Preloader -->
+        <div id="preloader"></div>
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+        <!-- Main JS File -->
+        <script src="assets/js/main.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        locale: 'es',
+        slotMinTime: "09:00:00",
+        slotMaxTime: "18:00:00",
+        slotDuration: "01:00:00",
+        selectable: true,
+        select: function (info) {
+          const date = info.startStr.split("T")[0];
+          const time = info.startStr.split("T")[1].substring(0, 5);
+
+          document.getElementById('selectedDate').value = date;
+          document.getElementById('selectedTime').value = time;
+          document.getElementById('selectedSlotInfo').innerText = `Cita seleccionada para el ${date} a las ${time}`;
+
+          new bootstrap.Modal(document.getElementById('bookingModal')).show();
+        },
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'timeGridDay,timeGridWeek,dayGridMonth'
+        }
+      });
+      calendar.render();
+    });
+
+    document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const method = document.getElementById('method').value;
+      const date = document.getElementById('selectedDate').value;
+      const time = document.getElementById('selectedTime').value;
+
+      const message = `
+        <p><strong>${name}</strong>, tu cita ha sido confirmada.</p>
+        <p><strong>Fecha:</strong> ${date}</p>
+        <p><strong>Hora:</strong> ${time}</p>
+        <p><strong>Medio:</strong> ${method}</p>
+        <p>Se enviará confirmación a: ${email}</p>
+      `;
+
+      document.getElementById('confirmationMessage').innerHTML = message;
+
+      bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+      new bootstrap.Modal(document.getElementById('confirmationModal')).show();
+
+      document.getElementById('appointmentForm').reset();
+    });
+  </script>
+    </body>
+</html>

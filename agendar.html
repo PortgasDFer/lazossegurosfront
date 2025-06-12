@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agendar Cita - Despacho de Seguros</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <h3 class="mb-4">Selecciona una fecha y hora para tu cita</h3>
+    <div id="calendar"></div>
+  </div>
+
+  <!-- Modal con Formulario -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Agendar Cita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="appointmentForm">
+            <input type="hidden" id="selectedDate">
+            <input type="hidden" id="selectedTime">
+            <div class="mb-3">
+              <label class="form-label">Nombre completo</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Medio</label>
+              <select class="form-select" id="method" required>
+                <option value="">Seleccione una opción</option>
+                <option value="Presencial">Presencial</option>
+                <option value="Videollamada">Videollamada</option>
+              </select>
+            </div>
+            <div class="alert alert-info" id="selectedSlotInfo"></div>
+            <button type="submit" class="btn btn-success">Confirmar Cita</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Cita Confirmada</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="confirmationMessage"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        locale: 'es',
+        slotMinTime: "09:00:00",
+        slotMaxTime: "18:00:00",
+        slotDuration: "01:00:00",
+        selectable: true,
+        select: function (info) {
+          const date = info.startStr.split("T")[0];
+          const time = info.startStr.split("T")[1].substring(0, 5);
+
+          document.getElementById('selectedDate').value = date;
+          document.getElementById('selectedTime').value = time;
+          document.getElementById('selectedSlotInfo').innerText = `Cita seleccionada para el ${date} a las ${time}`;
+
+          new bootstrap.Modal(document.getElementById('bookingModal')).show();
+        },
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'timeGridDay,timeGridWeek,dayGridMonth'
+        }
+      });
+      calendar.render();
+    });
+
+    document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const method = document.getElementById('method').value;
+      const date = document.getElementById('selectedDate').value;
+      const time = document.getElementById('selectedTime').value;
+
+      const message = `
+        <p><strong>${name}</strong>, tu cita ha sido confirmada.</p>
+        <p><strong>Fecha:</strong> ${date}</p>
+        <p><strong>Hora:</strong> ${time}</p>
+        <p><strong>Medio:</strong> ${method}</p>
+        <p>Se enviará confirmación a: ${email}</p>
+      `;
+
+      document.getElementById('confirmationMessage').innerHTML = message;
+
+      bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+      new bootstrap.Modal(document.getElementById('confirmationModal')).show();
+
+      document.getElementById('appointmentForm').reset();
+    });
+  </script>
+</body>
+</html>
