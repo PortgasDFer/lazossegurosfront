@@ -106,8 +106,12 @@
             <section id="services" class="services section">
                 <div class="container py-5">
                     <div class="card">
-                        <h3 class="mb-4">Selecciona una fecha y hora para tu cita</h3>
+                        <h3 class="mb-4 text-center">Selecciona una fecha y hora para tu cita</h3>
                         <div id="calendar"></div>
+                        <small class="text-muted">
+                          Tus datos están protegidos y solo serán utilizados para fines de contacto relacionados con tu cita.
+                        </small>
+
                     </div>
                 </div>
                 
@@ -145,6 +149,19 @@
                 <option value="Videollamada">Videollamada</option>
               </select>
             </div>
+            <div id="idUploadFields" style="display: none;">
+                  <div class="mb-3">
+                    <label class="form-label">Identificación oficial (frontal)</label>
+                    <input type="file" class="form-control" id="idFront" accept="image/*">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Identificación oficial (reverso)</label>
+                    <input type="file" class="form-control" id="idBack" accept="image/*">
+                  </div>
+                  <small class="text-muted">
+                    Estas imágenes solo se solicitan para validar tu identidad en consultas presenciales.
+                  </small>
+              </div>
             <div class="alert alert-info" id="selectedSlotInfo"></div>
             <button type="submit" class="btn btn-success">Confirmar Cita</button>
           </form>
@@ -259,6 +276,7 @@
         slotMaxTime: "18:00:00",
         slotDuration: "01:00:00",
         selectable: true,
+        weekends: false, // oculta sábado y domingo
         select: function (info) {
           const date = info.startStr.split("T")[0];
           const time = info.startStr.split("T")[1].substring(0, 5);
@@ -266,6 +284,7 @@
           document.getElementById('selectedDate').value = date;
           document.getElementById('selectedTime').value = time;
           document.getElementById('selectedSlotInfo').innerText = `Cita seleccionada para el ${date} a las ${time}`;
+
 
           new bootstrap.Modal(document.getElementById('bookingModal')).show();
         },
@@ -280,13 +299,20 @@
 
     document.getElementById('appointmentForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
+      
+            document.getElementById('method').addEventListener('change', function () {
+              const isPresencial = this.value === 'Presencial';
+              document.getElementById('idUploadFields').style.display = isPresencial ? 'block' : 'none';
+            });
+          
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const phone = document.getElementById('phone').value;
       const method = document.getElementById('method').value;
       const date = document.getElementById('selectedDate').value;
       const time = document.getElementById('selectedTime').value;
+      
+
 
       const message = `
         <p><strong>${name}</strong>, tu cita ha sido confirmada.</p>
@@ -304,5 +330,29 @@
       document.getElementById('appointmentForm').reset();
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales/es.js"></script>
+
+  <script>
+
+
+  document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const method = document.getElementById('method').value;
+
+  if (method == 'Presencial') {
+    const idFront = document.getElementById('idFront').files[0];
+    const idBack = document.getElementById('idBack').files[0];
+    if (!idFront || !idBack) {
+      alert('Por favor sube ambas imágenes de tu identificación.');
+      return;
+    }
+  }
+
+});
+
+</script>
+
+
     </body>
 </html>
