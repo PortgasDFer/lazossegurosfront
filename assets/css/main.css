@@ -671,7 +671,7 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  /*padding: 60px 0;*/
+  padding: 60px 0;
   padding-top: 15px;
   scroll-margin-top: 100px;
   overflow: clip;
@@ -723,6 +723,12 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
+    width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding: 120px 0 60px;
+  display: flex;
+  align-items: center;
   color: white;
   padding: 100px 0;
   text-align: center;
