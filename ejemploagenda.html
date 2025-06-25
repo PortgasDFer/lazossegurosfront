@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda tu cita</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 2rem;
+    }
+    .step-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .card {
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center mb-4">Agendar Cita con Alva Seguros</h2>
+
+    <div id="step1" class="card p-4 mb-4">
+      <div class="step-title">Paso 1: Selecciona fecha y hora</div>
+      <div id='calendar'></div>
+    </div>
+
+    <div id="step2" class="card p-4 mb-4 d-none">
+      <div class="step-title">Paso 2: Ingresa tus datos</div>
+      <form id="appointmentForm">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre completo</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Teléfono</label>
+          <input type="tel" class="form-control" id="phone" required>
+        </div>
+        <input type="hidden" id="selectedDateTime">
+        <button type="submit" class="btn btn-primary">Agendar cita</button>
+      </form>
+    </div>
+
+    <div id="confirmation" class="alert alert-success d-none">
+      ¡Tu cita ha sido registrada! Te enviaremos una confirmación por correo.
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var selectedDateTime = '';
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        selectable: true,
+        allDaySlot: false,
+        slotMinTime: "09:00:00",
+        slotMaxTime: "18:00:00",
+        select: function (info) {
+          selectedDateTime = info.startStr;
+          document.getElementById('selectedDateTime').value = selectedDateTime;
+          document.getElementById('step1').classList.add('d-none');
+          document.getElementById('step2').classList.remove('d-none');
+        }
+      });
+
+      calendar.render();
+
+      document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Aquí podrías enviar los datos a un backend
+        document.getElementById('step2').classList.add('d-none');
+        document.getElementById('confirmation').classList.remove('d-none');
+      });
+    });
+  </script>
+</body>
+</html>
