@@ -328,16 +328,27 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const calendarEl = document.getElementById('calendar');
+        // Detectar si es móvil
+      const isMobile = window.innerWidth < 768;
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
+        initialView: window.innerWidth < 768 ? 'timeGridDay' : 'timeGridWeek',
+        initialView: isMobile ? 'timeGridDay' : 'timeGridWeek',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: isMobile 
+            ? 'timeGridDay' 
+            : 'timeGridWeek,dayGridMonth' // ocultamos 'month' en móvil
+        },
+        aspectRatio: isMobile ? 1.2 : 1.8,
         contentHeight: "auto",
         locale: 'es',
         slotMinTime: "09:00:00",
         slotMaxTime: "18:00:00",
         slotDuration: "01:00:00",
-        longPressDelay: 0,         // sin retraso para seleccionar o arrastrar
-        selectLongPressDelay: 1,   // esto elimina la necesidad del toque prolongado
         selectable: true,
+        longPressDelay: 0,            // ← elimina necesidad de mantener presionado
+        selectLongPressDelay: 1,      // ← permite seleccionar con un toque breve
         weekends: false, // oculta sábado y domingo
         select: function (info) {
           const date = info.startStr.split("T")[0];
@@ -349,14 +360,6 @@
 
 
           new bootstrap.Modal(document.getElementById('bookingModal')).show();
-        },
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'timeGridDay,timeGridWeek,dayGridMonth'
-        },  windowResize: function () {
-          const newView = window.innerWidth < 768 ? 'timeGridDay' : 'timeGridWeek';
-          calendar.changeView(newView);
         }
       });
       calendar.render();
